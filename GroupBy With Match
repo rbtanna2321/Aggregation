@@ -1,0 +1,26 @@
+
+    function: (req, res, next) => {
+        let query = [];
+        query.push({
+            "$match": { 'id': 'id Parameter' }
+        },
+            {
+            "$group":
+                {
+                    "_id": "$objectName.id",
+                    "doc":
+                     // All match object return then use below
+                        {
+                            "$push": "$$ROOT"
+                        }
+                        // else single first object return then use below
+                         {
+                            "$first": "$$ROOT"
+                        }
+                }
+        });
+        tablename.aggregate(query)
+            .then(response)
+            .catch(error);
+
+    }
