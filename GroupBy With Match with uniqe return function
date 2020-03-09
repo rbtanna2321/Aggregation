@@ -24,3 +24,13 @@
             .catch(error);
 
     }
+    
+    
+    // unique function
+    
+         response = response.map(data =>{
+        data.doc = _.unique(data.doc, function (datas) {
+          return datas.obj.id;
+        });
+        return data;
+      })
